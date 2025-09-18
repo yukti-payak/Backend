@@ -15,10 +15,11 @@ const{OrdersModel} = require ('./model/OrdersModel');
 require("./config/passport")(passport);
 
 // Production-ready CORS configuration
+// Production-ready CORS configuration
 app.use(cors({
   origin: [
-    "https://dashboard-two-murex-20.vercel.app/",
-    "https://frontend-zeta-eight-43.vercel.app/",
+    "https://dashboard-two-murex-20.vercel.app",     // ✅ No trailing slash
+    "https://frontend-zeta-eight-43.vercel.app",     // ✅ No trailing slash
     "http://localhost:3000", // for local development
     "http://localhost:5173", // for Vite dev server
     process.env.FRONTEND_URL, // Allow environment variable override
