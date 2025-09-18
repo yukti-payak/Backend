@@ -17,8 +17,8 @@ require("./config/passport")(passport);
 // Production-ready CORS configuration
 app.use(cors({
   origin: [
-    "https://dashboard-two-orpin-65.vercel.app",
-    "https://zentrade-project-frontend.vercel.app",
+    "https://dashboard-two-murex-20.vercel.app/",
+    "https://frontend-zeta-eight-43.vercel.app/",
     "http://localhost:3000", // for local development
     "http://localhost:5173", // for Vite dev server
     process.env.FRONTEND_URL, // Allow environment variable override
