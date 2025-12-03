@@ -14,22 +14,21 @@ const {PositionsModel} = require ('./model/PositionsModel');
 const{OrdersModel} = require ('./model/OrdersModel');
 require("./config/passport")(passport);
 
-// Production-ready CORS configuration
-// Production-ready CORS configuration
+
 app.use(cors({
   origin: [
-    "https://dashboard-two-murex-20.vercel.app",     // ✅ No trailing slash
-    "https://frontend-zeta-eight-43.vercel.app",     // ✅ No trailing slash
-    "http://localhost:3000", // for local development
-    "http://localhost:5173", // for Vite dev server
-    process.env.FRONTEND_URL, // Allow environment variable override
-  ].filter(Boolean), // Remove any undefined values
+    "https://dashboard-two-murex-20.vercel.app",    
+    "https://frontend-zeta-eight-43.vercel.app",    
+    "http://localhost:3000",
+    "http://localhost:5173", 
+    process.env.FRONTEND_URL,
+  ].filter(Boolean), 
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With'],
 }));
 
-// Add preflight handling for all routes
+
 app.options('*', cors());
 
 app.use(cookieParser());
@@ -37,7 +36,6 @@ app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({extended: false, limit: '10mb'}));
 app.use(passport.initialize());
 
-// Health check endpoint
 app.get('/health', (req, res) => {
   res.json({ 
     status: 'OK', 
