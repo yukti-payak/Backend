@@ -1,14 +1,12 @@
-const { Strategy, ExtractJwt } = require("passport-jwt");
-const User = require("../model/UserModel");
-
+import { Strategy, ExtractJwt } from "passport-jwt";
+import User from "../model/UserModel.js"; 
 
 const opts = {
   jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
   secretOrKey: process.env.JWT_SECRET || "Yuktipayak@1804",
 };
 
-
-module.exports = (passport) => {
+const configurePassport = (passport) => {
   passport.use(
     new Strategy(opts, async (jwt_payload, done) => {
       try {
@@ -21,3 +19,4 @@ module.exports = (passport) => {
     })
   );
 };
+export default configurePassport;

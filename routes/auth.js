@@ -1,10 +1,12 @@
-require('dotenv').config();
-const express = require("express");
-const router = express.Router();
-const bcrypt = require("bcrypt");
-const jwt = require("jsonwebtoken");
-const User = require("../model/UserModel");
+import 'dotenv/config'; // Automatically replaces require('dotenv').config()
+import express from "express";
+import bcrypt from "bcrypt";
+import jwt from "jsonwebtoken";
 
+// Remember to include the .js extension for local files in ESM!
+import User from "../model/UserModel.js"; 
+
+const router = express.Router();
 const JWT_SECRET = process.env.JWT_SECRET || "Yuktipayak@1804";
 
 if (!process.env.JWT_SECRET) {
@@ -99,7 +101,6 @@ router.post("/login", async (req, res) => {
   try {
     const { email, password } = req.body;
 
-
     if (!email || !password) {
       return res.status(400).json({ msg: "Email and password are required" });
     }
@@ -114,7 +115,6 @@ router.post("/login", async (req, res) => {
 
     console.log("Login successful for:", user.username);
 
-    
     res.json({ 
       token,
       user: {
@@ -129,6 +129,7 @@ router.post("/login", async (req, res) => {
   }
 });
 
+// Profile route
 router.get("/me", verifyToken, (req, res) => {
   try {
     res.json({ 
@@ -144,7 +145,7 @@ router.get("/me", verifyToken, (req, res) => {
   }
 });
 
-
+// Token Verification status route
 router.post("/verify", verifyToken, (req, res) => {
   res.json({ 
     valid: true,
@@ -156,4 +157,5 @@ router.post("/verify", verifyToken, (req, res) => {
   });
 });
 
-module.exports = router;
+// 100% matches your 'import authRoutes from ...' structure in index.js
+export default router;

@@ -1,6 +1,20 @@
-const {model} = require("mongoose");
-const {PositionsSchema} = require('../schemas/PositionsSchema');
+import mongoose from "mongoose";
 
-const PositionsModel = new model("position", PositionsSchema);
+const PositionsSchema = new mongoose.Schema({
+     product: String,
+    name: String,
+    qty : Number,
+    avg : Number,
+    price: Number,
+    net:  String,
+    day: String,
+    isLoss : Boolean,
 
-module.exports= {PositionsModel};
+});
+
+const PositionsModel = mongoose.model("PositionsModel",  PositionsSchema);
+export default PositionsModel;
+
+
+
+
